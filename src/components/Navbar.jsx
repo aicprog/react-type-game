@@ -1,23 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar as Nav, NavBrand, NavItems, NavLink } from '../styled/Navbar';
+import { Accent } from '../styled/Typography';
 
 const Navbar = () => {
 	return (
-		<nav>
-			<div>
+		<Nav>
+			<NavBrand>
 				<Link to="/">
-					Type and <span>Play</span>
+					Type<Accent>&</Accent>Play
 				</Link>
-			</div>
-			<ul>
+			</NavBrand>
+			<NavItems>
 				<li>
-					<Link to="/">Home</Link>
+					<NavLink to="/">Home</NavLink>
 				</li>
 				<li>
-					<Link to="/highScores">HighScores</Link>
+					<NavLink to="/highScores">HighScores</NavLink>
 				</li>
-			</ul>
-		</nav>
+			</NavItems>
+		</Nav>
 	);
 };
 
