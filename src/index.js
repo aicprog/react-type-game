@@ -6,24 +6,32 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Game from './pages/Game';
 import GameOver from './pages/GameOver';
 import Home from './pages/Home';
+import HighScores from './pages/HighScores';
+import ErrorPage from './pages/Error';
 
 //Routes for pages
 const router = createBrowserRouter([
 	{
-		path: '/',
 		element: <App />,
-	},
-	{
-		path: '/game',
-		element: <Game />,
-	},
-	{
-		path: '/gameOver',
-		element: <GameOver />,
-	},
-	{
-		path: '/home',
-		element: <Home />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/',
+				element: <Home />,
+			},
+			{
+				path: '/highScores',
+				element: <HighScores />,
+			},
+			{
+				path: '/game',
+				element: <Game />,
+			},
+			{
+				path: '/gameOver',
+				element: <GameOver />,
+			},
+		],
 	},
 ]);
 

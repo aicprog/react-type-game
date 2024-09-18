@@ -1,12 +1,20 @@
 import React from 'react';
-import './App.css';
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import { Container } from './styled/Container';
+import { Main } from './styled/Main';
+import Global from './styled/Global';
 
-function App() {
-  return (
-    <div>
-      <h1>App</h1>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<Main>
+			<Global />
+			<Container>
+				<Navbar />
+				<Outlet />
+			</Container>
+		</Main>
+	);
+};
 
 export default App;

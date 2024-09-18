@@ -2,7 +2,7 @@ import React from 'react'
 
 const HighScores = () => {
   return (
-    <div>HighScores</div>
+    <div>HighScores here</div>
   )
 }
 
