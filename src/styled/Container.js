@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
 	padding: 20px;
@@ -11,30 +11,30 @@ export const Flex = styled.div`
 	display: flex;
 	${({ center }) =>
 		center &&
-		`
+		css`
 			justify-content: center;
 			align-items: center;
 		`}
 	${({ spaceBetween }) =>
 		spaceBetween &&
-		`
+		css`
 			justify-content: space-between;
 			align-items: center;
 		`}
   ${({ flexEnd }) =>
 		flexEnd &&
-		`
+		css`
 			justify-content: flex-end;
 			align-items: center;
 		`}
   ${({ gap }) =>
 		gap &&
-		`
+		css`
 			gap: ${gap};
 		`}
   ${({ flexDirection }) =>
 		flexDirection &&
-		`
+		css`
 			flex-direction: ${flexDirection};
 		`}
 `;
