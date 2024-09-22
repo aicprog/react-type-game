@@ -8,6 +8,7 @@ import GameOver from './pages/GameOver';
 import Home from './pages/Home';
 import HighScores from './pages/HighScores';
 import ErrorPage from './pages/Error';
+import { ScoreProvider } from './contexts/ScoreContext';
 
 //Routes for pages
 const router = createBrowserRouter([
@@ -38,6 +39,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<ScoreProvider>
+			<RouterProvider router={router} />
+		</ScoreProvider>
 	</React.StrictMode>
 );

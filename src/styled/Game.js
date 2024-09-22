@@ -21,6 +21,7 @@ export const Sentence = styled.p`
 	grid-row: 2;
 	grid-column: 1/4;
 	text-align: center;
+	margin-top: 64px;
 `;
 
 const shake = keyframes`
@@ -32,14 +33,13 @@ const shake = keyframes`
 `;
 
 const flashColor = keyframes`
-  0% { color: blue; }
-  50% { color: red; }
-  100% { color: blue; }
+  0% { color: black; }
+  50% { color:#e16365; }
+  100% { color: black; }
 `;
 
 // Styled component
 export const Character = styled.span`
-	display: inline-block;
 	font-size: 4rem;
 	text-align: center;
 	color: ${({ currentChar }) => (currentChar ? '#e16365' : '#222222')};

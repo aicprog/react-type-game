@@ -9,6 +9,7 @@ import {
 } from '../styled/Game';
 import { useNavigate } from 'react-router-dom';
 import { useKeyPress } from '../hooks/useKeyPress';
+import { useScore } from '../contexts/ScoreContext';
 
 const sentences = [
 	'The sun set over the mountains, casting a warm golden glow.',
@@ -23,11 +24,11 @@ const sentences = [
 	'The coffee shop was quiet, except for the sound of typing on laptops.',
 ];
 
-const MAX_SECONDS = 60;
+const MAX_SECONDS = 6;
 
 const Game = () => {
 	const navigate = useNavigate();
-	const [score, setScore] = useState(0);
+	const [score, setScore] = useScore();
 	const [sentenceIndex, setSentenceIndex] = useState(0);
 	const [charIndex, setCharIndex] = useState(0);
 	const [incorrectChar, setIncorrectChar] = useState(false);
@@ -42,7 +43,6 @@ const Game = () => {
 		() => {
 			setCharIndex((oldIndx) => oldIndx + 1);
 			setScore((prevScore) => prevScore + 1);
-			setIncorrectChar(false);
 			if (charIndex === currentSentence.length - 1) {
 				setCharIndex(0);
 				setSentenceIndex(Math.floor(Math.random() * sentences.length));
@@ -55,10 +55,11 @@ const Game = () => {
 
 	useEffect(() => {
 		if (seconds <= -1) navigate('/gameOver');
-    setIncorrectChar(false);
+		setIncorrectChar(false);
 	}, [seconds, navigate]);
 
 	useEffect(() => {
+		setScore(0);
 		const currentTime = new Date();
 		const interval = setInterval(() => updateTime(currentTime), 1);
 		setSentenceIndex(Math.floor(Math.random() * sentences.length));
@@ -90,7 +91,8 @@ const Game = () => {
 							currentChar={currentChar === char && charIndex === index}
 							incorrectChar={incorrectChar && charIndex === index}
 						>
-							{char === ' ' ? '\u00A0' : char} {/* Use non-breaking space */}
+							{char}
+							{char === ' ' && '\u00A0'}
 						</Character>
 					);
 				})}
