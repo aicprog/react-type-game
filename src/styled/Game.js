@@ -21,7 +21,7 @@ export const Sentence = styled.p`
 	grid-row: 2;
 	grid-column: 1/4;
 	text-align: center;
-	margin-top: 64px;
+	margin: 64px 0;
 `;
 
 const shake = keyframes`

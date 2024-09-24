@@ -24,7 +24,7 @@ const sentences = [
 	'The coffee shop was quiet, except for the sound of typing on laptops.',
 ];
 
-const MAX_SECONDS = 6;
+const MAX_SECONDS = 60;
 
 const Game = () => {
 	const navigate = useNavigate();
