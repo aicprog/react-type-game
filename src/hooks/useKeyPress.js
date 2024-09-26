@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 export const useKeyPress = (
 	targetKey,
@@ -7,23 +7,26 @@ export const useKeyPress = (
 ) => {
 	const [keyPressed, setKeyPressed] = React.useState(false);
 
-	const handleKeyDown = (event) => {
-		if (event.key === targetKey) {
-			console.log('Key down detected for:', event.key); // Log key down
-			event.preventDefault();
-			setKeyPressed(true);
-			onKeyPress();
-		} else {
-			onMissedKeyPress();
-		}
-	};
+	const handleKeyDown = useCallback(
+		(event) => {
+			if (event.key === targetKey) {
+				console.log('Key down detected for:', event.key); // Log key down
+				event.preventDefault();
+				setKeyPressed(true);
+				onKeyPress();
+			} else {
+				onMissedKeyPress();
+			}
+		},
+		[targetKey, onKeyPress, onMissedKeyPress]
+	);
 
-	const handleKeyUp = (event) => {
+	const handleKeyUp = useCallback((event) => {
 		if (event.key === targetKey) {
 			console.log('Key up detected for:', event.key); // Log key up
 			event.preventDefault();
-		} 
-	};
+		}
+	}, [targetKey])
 
 	React.useEffect(() => {
 		window.addEventListener('keydown', handleKeyDown);
@@ -33,7 +36,7 @@ export const useKeyPress = (
 			window.removeEventListener('keydown', handleKeyDown);
 			window.removeEventListener('keyup', handleKeyUp);
 		};
-	}, [targetKey]);
+	}, [handleKeyDown, handleKeyUp]);
 
 	return keyPressed;
 };

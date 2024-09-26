@@ -4,7 +4,7 @@ import { Flex } from '../styled/Container';
 import { StyledTitle } from '../styled/Typography';
 import { useScore } from '../contexts/ScoreContext';
 import { useNavigate } from 'react-router-dom';
-import { Score, Sentence } from '../styled/Game';
+import { Sentence } from '../styled/Game';
 
 const GameOver = () => {
 	const navigate = useNavigate();
@@ -12,14 +12,12 @@ const GameOver = () => {
 
 	useEffect(() => {
 		if (score === -1) navigate('/');
-	}, [navigate]);
+	}, [score, navigate]);
 
 	return (
 		<Flex center flexDirection={'column'}>
 			<StyledTitle>Game Over</StyledTitle>
-			<Sentence>
-				You scored {score} points!
-			</Sentence>
+			<Sentence>You scored {score} points!</Sentence>
 			<Flex gap={'2rem'}>
 				<CTA to="/">Go Home</CTA>
 				<CTA to="/game">Play Again</CTA>

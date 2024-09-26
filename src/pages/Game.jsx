@@ -38,7 +38,7 @@ const Game = () => {
 	const currentSentence = sentences[sentenceIndex].split('');
 	const currentChar = currentSentence[charIndex];
 
-	const _ = useKeyPress(
+	useKeyPress(
 		currentChar,
 		() => {
 			setCharIndex((oldIndx) => oldIndx + 1);
@@ -64,6 +64,7 @@ const Game = () => {
 		const interval = setInterval(() => updateTime(currentTime), 1);
 		setSentenceIndex(Math.floor(Math.random() * sentences.length));
 		return () => clearInterval(interval);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const updateTime = (startTime) => {
