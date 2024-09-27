@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, createContext, useState } from 'react';
 
-const ScoreContext = React.createContext(-1);
+const ScoreContext = createContext(-1);
 
-//hook
+//hook so components can access the score context
 const useScore = () => useContext(ScoreContext);
 
+//to wrap around main component
 const ScoreProvider = ({ children }) => {
     const [score, setScore] = useState(-1)
 	return (
