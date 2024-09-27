@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import HighScores from './pages/HighScores';
 import ErrorPage from './pages/Error';
 import { ScoreProvider } from './contexts/ScoreContext';
+import { Auth0Provider } from '@auth0/auth0-react';
+import config from './auth_config.json';
 
 //Routes for pages
 const router = createBrowserRouter([
@@ -37,10 +39,19 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
 	<React.StrictMode>
-		<ScoreProvider>
-			<RouterProvider router={router} />
-		</ScoreProvider>
+		<Auth0Provider
+			domain={config.domain}
+			clientId={config.clientId}
+			authorizationParams={{
+				redirect_uri: window.location.origin,
+			}}
+		>
+			<ScoreProvider>
+				<RouterProvider router={router} />
+			</ScoreProvider>
+		</Auth0Provider>
 	</React.StrictMode>
 );
