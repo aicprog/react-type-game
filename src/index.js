@@ -47,6 +47,7 @@ root.render(
 			clientId={config.clientId}
 			authorizationParams={{
 				redirect_uri: window.location.origin,
+				audience: config.audience,
 			}}
 		>
 			<ScoreProvider>
