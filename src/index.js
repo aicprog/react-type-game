@@ -8,7 +8,7 @@ import GameOver from './pages/GameOver';
 import Home from './pages/Home';
 import HighScores from './pages/HighScores';
 import ErrorPage from './pages/Error';
-import { ScoreProvider } from './contexts/ScoreContext';
+import { GameProvider } from './contexts/GameContext';
 import { Auth0Provider } from '@auth0/auth0-react';
 import config from './auth_config.json';
 
@@ -50,9 +50,9 @@ root.render(
 				audience: config.audience,
 			}}
 		>
-			<ScoreProvider>
+			<GameProvider>
 				<RouterProvider router={router} />
-			</ScoreProvider>
+			</GameProvider>
 		</Auth0Provider>
 	</React.StrictMode>
 );

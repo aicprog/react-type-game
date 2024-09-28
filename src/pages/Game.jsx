@@ -9,7 +9,7 @@ import {
 } from '../styled/Game';
 import { useNavigate } from 'react-router-dom';
 import { useKeyPress } from '../hooks/useKeyPress';
-import { useScore } from '../contexts/ScoreContext';
+import { useGame } from '../contexts/GameContext';
 
 const sentences = [
 	'The sun set over the mountains, casting a warm golden glow.',
@@ -28,7 +28,7 @@ const MAX_SECONDS = 6;
 
 const Game = () => {
 	const navigate = useNavigate();
-	const [score, setScore] = useScore();
+	const { score, setScore, setNewGame } = useGame();
 	const [sentenceIndex, setSentenceIndex] = useState(0);
 	const [charIndex, setCharIndex] = useState(0);
 	const [incorrectChar, setIncorrectChar] = useState(false);
@@ -54,6 +54,10 @@ const Game = () => {
 	);
 
 	useEffect(() => {
+		setNewGame(true);
+	}, [setNewGame]);
+
+	useEffect(() => {
 		if (seconds <= -1) navigate('/gameOver');
 		setIncorrectChar(false);
 	}, [seconds, navigate]);
@@ -64,7 +68,7 @@ const Game = () => {
 		const interval = setInterval(() => updateTime(currentTime), 1);
 		setSentenceIndex(Math.floor(Math.random() * sentences.length));
 		return () => clearInterval(interval);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const updateTime = (startTime) => {

@@ -2,26 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { CTA } from '../styled/Links';
 import { Flex } from '../styled/Container';
 import { StyledTitle } from '../styled/Typography';
-import { useScore } from '../contexts/ScoreContext';
+import { useGame } from '../contexts/GameContext';
 import { useNavigate } from 'react-router-dom';
 import { Sentence } from '../styled/Game';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const GameOver = () => {
 	const navigate = useNavigate();
-	const [score] = useScore();
+	const { score, newGame, setNewGame } = useGame();
 	const [scoreMessage, setScoreMessage] = useState('');
 	const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
-	
+
 	useEffect(() => {
-		if (score === -1) navigate('/');
-	}, [score, navigate]);
+		if (!newGame) navigate('/');
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [navigate]);
 
 	useEffect(() => {
 		const saveHighScore = async () => {
 			try {
 				const token = await getAccessTokenSilently();
-				console.log('Token ', token, user);
 				const options = {
 					method: 'POST',
 					body: JSON.stringify({ name: user.nickname, score }),
@@ -39,11 +39,12 @@ const GameOver = () => {
 					: setScoreMessage(
 							'Sorry you did not get a high score this time. Keep trying and play again!'
 					  );
+				setNewGame(false);
 			} catch (err) {
 				console.log(`Error: ${err}`);
 			}
 		};
-		score !== -1 && isAuthenticated && saveHighScore();
+		newGame && isAuthenticated && saveHighScore();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [score]);
 
