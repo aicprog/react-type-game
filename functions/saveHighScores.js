@@ -2,8 +2,21 @@ const {
 	table: tableSave,
 	getHighScores: getHighScoresData,
 } = require('./utils/airtable');
+const {
+	getAccessTokenFromHeader: getAccessToken,
+	validateAccessToken: validateToken,
+} = require('./utils/auth');
 
 exports.handler = async function (event) {
+	const token = getAccessToken(event.headers);
+	const user = await validateToken(token);
+	console.log("User: ", user)
+	if (!user)
+		return {
+			statusCode: 401,
+			body: JSON.stringify({ err: 'Unauthorized' }),
+		};
+
 	if (event.httpMethod !== 'POST') {
 		return {
 			statusCode: 405,
@@ -19,7 +32,7 @@ exports.handler = async function (event) {
 		};
 	}
 	try {
-		console.log('Score: ', score);
+		console.log(event.headers);
 		const data = await getHighScoresData(false);
 		const lowestRecord = data[data.length - 1];
 		const noLowestScore = typeof lowestRecord.fields.score === 'undefined';
