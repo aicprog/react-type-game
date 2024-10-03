@@ -10,7 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useKeyPress } from '../hooks/useKeyPress';
 import { useGame } from '../contexts/GameContext';
-import { sentences } from '../../functions/utils/constants';
+import { sentences } from '../utils/constants';
 
 const MAX_SECONDS = 60;
 
