@@ -10,21 +10,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useKeyPress } from '../hooks/useKeyPress';
 import { useGame } from '../contexts/GameContext';
+import { sentences } from '../../functions/utils/constants';
 
-const sentences = [
-	'The sun set over the mountains, casting a warm golden glow.',
-	'She quickly realized that the key was missing from her bag.',
-	'The cat curled up in the chair and fell fast asleep.',
-	'He spent the afternoon organizing his bookshelf by color.',
-	'The concert was loud and energetic, with the crowd singing along.',
-	'The smell of freshly baked bread filled the entire house.',
-	'They hiked up the trail, stopping occasionally to admire the view.',
-	'The rain tapped gently on the windows as the storm rolled in.',
-	'She smiled when she saw her favorite flowers blooming in the garden.',
-	'The coffee shop was quiet, except for the sound of typing on laptops.',
-];
-
-const MAX_SECONDS = 6;
+const MAX_SECONDS = 60;
 
 const Game = () => {
 	const navigate = useNavigate();
