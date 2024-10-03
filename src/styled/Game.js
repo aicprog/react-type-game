@@ -34,7 +34,7 @@ const shake = keyframes`
 
 const flashColor = keyframes`
   0% { color: black; }
-  50% { color:#e16365; }
+  50% { color: var(--primary); }
   100% { color: black; }
 `;
 
@@ -42,7 +42,8 @@ const flashColor = keyframes`
 export const Character = styled.span`
 	font-size: 4rem;
 	text-align: center;
-	color: ${({ currentChar }) => (currentChar ? '#e16365' : '#222222')};
+	color: ${({ currentChar }) =>
+		currentChar ? 'var(--primary)' : 'var(--on-background)'};
 	text-decoration: ${({ currentChar }) => (currentChar ? 'underline' : 'none')};
 
 	${({ incorrectChar }) =>

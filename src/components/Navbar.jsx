@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar as Nav, NavBrand, NavItems, NavLink } from '../styled/Navbar';
+import {
+	ButtonLink,
+	Navbar as Nav,
+	NavBrand,
+	NavItems,
+	NavLink,
+	NavSelect,
+} from '../styled/Navbar';
 import { Accent } from '../styled/Typography';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
 	const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
 	return (
@@ -23,20 +30,29 @@ const Navbar = () => {
 				</li>
 				{!isAuthenticated && (
 					<li>
-						<button onClick={() => loginWithRedirect()}>Log In</button>
+						<ButtonLink onClick={() => loginWithRedirect()}>Log In</ButtonLink>
 					</li>
 				)}
 				{isAuthenticated && (
 					<li>
-						<button
+						<ButtonLink
 							onClick={() =>
 								logout({ logoutParams: { returnTo: window.location.origin } })
 							}
 						>
 							Log Out
-						</button>
+						</ButtonLink>
 					</li>
 				)}
+				<NavSelect
+					name="theme-select"
+					id="theme-select"
+					value={theme}
+					onChange={(e) => toggleTheme(e.target.value)}
+				>
+					<option value="light">Light Theme</option>
+					<option value="dark">Dark Theme</option>
+				</NavSelect>
 			</NavItems>
 		</Nav>
 	);

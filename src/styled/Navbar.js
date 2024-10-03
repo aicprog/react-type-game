@@ -20,6 +20,8 @@ export const NavItems = styled.ul`
 	display: grid;
 	grid-auto-flow: column;
 	grid-gap: 20px;
+	justify-content: center; /* Center horizontally */
+	align-items: center;
 `;
 
 export const NavLink = styled(Link)`
@@ -28,6 +30,36 @@ export const NavLink = styled(Link)`
 	transition: color 200ms;
 
 	&:hover {
-		color: #e16365;
+		color: var(--primary);
+	}
+`;
+
+export const ButtonLink = styled.button`
+	border: none;
+	font-size: 1.1rem;
+	background: transparent;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--primary);
+	}
+`;
+
+export const NavSelect = styled.select`
+	appearance: none;
+	background-color: var(--secondary);
+	border: 1px solid #b0c4c8;
+	padding: 8px 14px;
+	font-size: 14px;
+	border-radius: 5px;
+	width: 150px;
+	outline: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	color: var(--onSecondary);
+
+	&:focus {
+		border-color: #20c997; /* Modern teal border on focus */
+		box-shadow: 0 0 5px rgba(32, 201, 151, 0.5);
 	}
 `;
