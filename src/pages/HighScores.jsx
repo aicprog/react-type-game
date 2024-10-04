@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ScoreItem, ScoresList } from '../styled/HighScores';
 import { StyledTitle } from '../styled/Typography';
+import useLoading from '../hooks/useLoading';
+import Loader from '../components/Loader';
 
 const HighScores = () => {
 	const [highScores, setHighScores] = useState([]);
+	const { loading, error, withLoading } = useLoading();
 
 	useEffect(() => {
 		const fetchHighScores = async () => {
@@ -15,8 +18,12 @@ const HighScores = () => {
 			} catch (err) {}
 		};
 
-		fetchHighScores();
-	}, []);
+		withLoading(fetchHighScores);
+	}, [withLoading]);
+
+	if (loading) {
+		return <Loader />;
+	}
 
 	return (
 		<div>
