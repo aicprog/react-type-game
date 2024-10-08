@@ -52,7 +52,7 @@ export const NavSelect = styled.select`
 	padding: 8px 14px;
 	font-size: 14px;
 	border-radius: 5px;
-	width: 150px;
+	width: 120px;
 	outline: none;
 	cursor: pointer;
 	transition: all 0.3s ease;
