@@ -51,13 +51,13 @@ const GameOver = () => {
 	return (
 		<Flex center flexDirection={'column'}>
 			<StyledTitle>Game Over</StyledTitle>
-			<Sentence>You scored {score} points!</Sentence>
+			<p>You scored {score} points!</p>
 			{!isAuthenticated && (
 				<Sentence>
 					To be able to save a high score, please log in or sign up.
 				</Sentence>
 			)}
-			<Sentence>{scoreMessage}</Sentence>
+			<p>{scoreMessage}</p>
 			<Flex gap={'2rem'}>
 				<CTA to="/game">Play Again</CTA>
 				<CTA to="/highScores">High Scores</CTA>

@@ -31,4 +31,9 @@ export const GlobalStyle = createGlobalStyle`
     h1, h2{
         margin-bottom: 2rem;
     }
+    
+    p{
+        font-size: 1.5rem ;
+        line-height: 2rem ;
+    }
 `;

@@ -22,6 +22,7 @@ export const Sentence = styled.p`
 	grid-column: 1/4;
 	text-align: center;
 	margin: 64px 0;
+	line-height: 3.5rem ;
 `;
 
 const shake = keyframes`
